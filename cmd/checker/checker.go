@@ -23,5 +23,11 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	num, err := all_stacks.Pop(1)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	fmt.Println(all_stacks.Stack_A, instarctions)
+	fmt.Println("top elem from stack a", num)
 }

@@ -40,10 +40,10 @@ func (s *All_Stacks) Pop(stack_num int) (int, error) {
 		num = s.Stack_A[len(s.Stack_A)-1]
 	case 1:
 		// this case we gona work on stak b
-		if len(s.Stack_A) == 0 {
+		if len(s.Stack_B) == 0 {
 			return 0, fmt.Errorf("stack b is empty")
 		}
-		num = s.Stack_A[len(s.Stack_B)-1]
+		num = s.Stack_B[len(s.Stack_B)-1]
 	}
 	return num, nil
 }
