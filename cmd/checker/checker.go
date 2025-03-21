@@ -2,18 +2,31 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 )
 
 func main() {
-	if len(os.Args) <= 1 {
-		println()
-		return
+	// ✅ Safely handle command-line arguments
+	var stack string
+	if len(os.Args) > 1 {
+		stack = os.Args[1] // Read argument if exists
+		fmt.Println("Command-line argument:", stack)
+	} else {
+		fmt.Println("No command-line argument provided.")
 	}
-	
-	stack := os.Args[1]
+
+	// ✅ Read from stdin
 	NewScanner := bufio.NewScanner(os.Stdin)
-	NewScanner.Scan()
-	instarctions := NewScanner.Text()
-	println(stack, instarctions)
+	fmt.Println("Reading from stdin...")
+
+	for NewScanner.Scan() {
+		println(1) // Debugging: Ensure it runs
+		println(NewScanner.Text()) // Print each line
+	}
+
+	// ✅ Handle scanner errors
+	if err := NewScanner.Err(); err != nil {
+		fmt.Println("Error reading input:", err)
+	}
 }
