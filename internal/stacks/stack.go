@@ -28,6 +28,14 @@ func New_stacks() *All_Stacks {
 	}
 }
 
+// IsEmpty checks if the stack is empty based on the given stack number
+func (s *All_Stacks) IsEmpty(num int) bool {
+	if num == 0 {
+		return len(s.Stack_A) == 0
+	}
+	return len(s.Stack_B) == 0
+}
+
 // this function is about to pop the top first element from the stack
 func (s *All_Stacks) Pop(stack_num int) (int, error) {
 	num := 0
