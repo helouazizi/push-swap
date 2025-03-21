@@ -28,6 +28,9 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(all_stacks.Stack_A, instarctions)
 	fmt.Println("top elem from stack a", num)
+	fmt.Println(all_stacks.Stack_A, instarctions)
+	all_stacks.Sa()
+	fmt.Println(all_stacks.Stack_A, instarctions)
+
 }

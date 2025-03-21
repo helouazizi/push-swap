@@ -83,8 +83,8 @@ func (s *All_Stacks) Sa() error {
 	if err != nil {
 		return err
 	}
-	s.Pa(secondnum)
 	s.Pa(firsnum)
+	s.Pa(secondnum)
 	return nil
 
 }
