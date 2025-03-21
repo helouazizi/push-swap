@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"push-swap/internal/stacks"
 	"push-swap/internal/utils"
 )
 
@@ -23,7 +24,11 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	num, err := all_stacks.Pop(0)
+	// lets execute the instarcions on the stacks
+	// if len(stacks.Instarctions) != 0 {
+	// 	all_stacks.Execute_Instarcrions(instarctions)
+	// }
+ 	num, err := all_stacks.Pop(0)
 	if err != nil {
 		fmt.Println(err)
 		return

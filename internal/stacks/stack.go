@@ -159,4 +159,26 @@ func (s *All_Stacks) Rrr() {
 	s.Rrb()
 }
 
+
+// this function about to execute all functiones below
+func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  {
+	// for _, instarction := range instarctions {
+	// 	switch instarction {
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+	// 	case "pa":
+		
+
+	// 	}
+	// }
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
