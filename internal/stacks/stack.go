@@ -1,4 +1,4 @@
-package stack
+package stacks
 
 /*
 pa push the top first element of stack b to stack a
