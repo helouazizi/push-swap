@@ -152,4 +152,11 @@ func (s *All_Stacks) Rrb() {
 	}
 }
 
+//rrr execute rra and rrbrrr execute rra and
+
+func (s *All_Stacks) Rrr() {
+	s.Rra()
+	s.Rrb()
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
