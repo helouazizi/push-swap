@@ -25,9 +25,9 @@ func main() {
 		return
 	}
 	// lets execute the instarcions on the stacks
-	// if len(stacks.Instarctions) != 0 {
-	// 	all_stacks.Execute_Instarcrions(instarctions)
-	// }
+	if len(stacks.Instarctions) != 0 {
+		all_stacks.Execute_Instarcrions(instarctions)
+	}
  	num, err := all_stacks.Pop(0)
 	if err != nil {
 		fmt.Println(err)
