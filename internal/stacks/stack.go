@@ -1,5 +1,7 @@
 package stacks
 
+import "fmt"
+
 /*
 pa push the top first element of stack b to stack a
 pb push the top first element of stack a to stack b
@@ -24,6 +26,26 @@ func New_stacks() *All_Stacks {
 		Stack_A: []int{},
 		Stack_B: []int{},
 	}
+}
+
+// this function is about to pop the top first element from the stack
+func (s *All_Stacks) Pop(stack_num int) (int, error) {
+	num := 0
+	switch stack_num {
+	case 0:
+		// this case we gona work on stak a
+		if len(s.Stack_A) == 0 {
+			return 0, fmt.Errorf("stack a is empty")
+		}
+		num = s.Stack_A[len(s.Stack_A)-1]
+	case 1:
+		// this case we gona work on stak b
+		if len(s.Stack_A) == 0 {
+			return 0, fmt.Errorf("stack b is empty")
+		}
+		num = s.Stack_A[len(s.Stack_B)-1]
+	}
+	return num, nil
 }
 
 // this function to push from b to a
