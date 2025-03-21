@@ -106,4 +106,10 @@ func (s *All_Stacks) Sb() error {
 
 }
 
+// execute sa and sb
+func (s *All_Stacks) Ss() {
+	s.Sa()
+	s.Sb()
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
