@@ -162,8 +162,8 @@ func (s *All_Stacks) Rrr() {
 
 // this function about to execute all functiones below
 func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  {
-	// for _, instarction := range instarctions {
-	// 	switch instarction {
+	for _, instarction := range instarctions {
+		switch instarction {
 	// 	case "pa":
 	// 	case "pa":
 	// 	case "pa":
