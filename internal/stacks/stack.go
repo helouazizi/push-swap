@@ -112,4 +112,10 @@ func (s *All_Stacks) Ss() {
 	s.Sb()
 }
 
+func (s *All_Stacks) Ra() {
+	if !s.IsEmpty(0) {
+		s.Stack_A = append(s.Stack_A[1:], s.Stack_A[0])
+	}
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
