@@ -37,13 +37,19 @@ func (s *All_Stacks) Pop(stack_num int) (int, error) {
 		if len(s.Stack_A) == 0 {
 			return 0, fmt.Errorf("stack a is empty")
 		}
-		num = s.Stack_A[len(s.Stack_A)-1]
+		lastindex := len(s.Stack_A) - 1
+		num = s.Stack_A[lastindex]
+		// remove the last index from the stack a
+		s.Stack_A = s.Stack_A[:lastindex]
 	case 1:
 		// this case we gona work on stak b
 		if len(s.Stack_B) == 0 {
 			return 0, fmt.Errorf("stack b is empty")
 		}
-		num = s.Stack_B[len(s.Stack_B)-1]
+		lastindex := len(s.Stack_B) - 1
+		num = s.Stack_B[lastindex]
+		// remove the last elm from stack b
+		s.Stack_B = s.Stack_B[:lastindex]
 	}
 	return num, nil
 }
