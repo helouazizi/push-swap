@@ -23,7 +23,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	num, err := all_stacks.Pop(1)
+	num, err := all_stacks.Pop(0)
 	if err != nil {
 		fmt.Println(err)
 		return
