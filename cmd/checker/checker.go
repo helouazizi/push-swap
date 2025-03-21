@@ -12,14 +12,14 @@ func main() {
 	}
 
 	stack := os.Args[1]
-	instarctions := ""
+	instarctions := []string{}
 	NewScanner := bufio.NewScanner(os.Stdin)
 	for NewScanner.Scan() {
-		instarctions += "\n" + NewScanner.Text()
+		
 	}
 	if err := NewScanner.Err(); err != nil {
 		println(err)
 	}
 
-	println(stack,instarctions)
+	println(stack, instarctions)
 }

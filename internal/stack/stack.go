@@ -13,3 +13,5 @@ rra reverse rotate a (shift down all elements of stack a by 1, the last element 
 rrb reverse rotate b
 rrr execute rra and rrb
 */
+
+var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
