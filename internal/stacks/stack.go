@@ -26,4 +26,14 @@ func New_stacks() *All_Stacks {
 	}
 }
 
+// this function to push from b to a
+func (s *All_Stacks) Pa(num int) {
+	s.Stack_A = append(s.Stack_A, num)
+}
+
+// this function to push from a to b
+func (s *All_Stacks) Pb(num int) {
+	s.Stack_B = append(s.Stack_B, num)
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
