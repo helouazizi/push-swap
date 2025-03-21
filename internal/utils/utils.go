@@ -37,12 +37,12 @@ func Scsn_Input() ([]string, error) {
 
 func Parse_stack(text string) (*stacks.All_Stacks, error) {
 	stacks := stacks.New_stacks()
-	stck := strings.Split(text, " ")
+	stck := strings.Split(strings.TrimSpace(text), " ")
 	slices.Reverse(stck)
 	for _, v := range stck {
 		num, err := strconv.Atoi(v)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("error: invalid number '%v'", (v))
 		}
 		stacks.Stack_A = append(stacks.Stack_A, num)
 	}
