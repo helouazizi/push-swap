@@ -90,20 +90,20 @@ func (s *All_Stacks) Sa() error {
 }
 
 // this function swap two first elments of stack a
-// func (s *All_Stacks) Sb() error {
-// 	// in first extract first two elements
-// 	firsnum, err := s.Pop(1)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	secondnum, err := s.Pop(1)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	s.Pb(secondnum)
-// 	s.Pb(firsnum)
-// 	return nil
+func (s *All_Stacks) Sb() error {
+	// in first extract first two elements
+	firsnum, err := s.Pop(1)
+	if err != nil {
+		return err
+	}
+	secondnum, err := s.Pop(1)
+	if err != nil {
+		return err
+	}
+	s.Pb(secondnum)
+	s.Pb(firsnum)
+	return nil
 
-// }
+}
 
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
