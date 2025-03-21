@@ -1,12 +1,9 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
-	"push-swap/internal/stacks"
 	"push-swap/internal/utils"
-	"strings"
 )
 
 func main() {
@@ -14,25 +11,13 @@ func main() {
 		println()
 		return
 	}
-	
 
 	stack := os.Args[1]
-	instarctions := []string{}
-	NewScanner := bufio.NewScanner(os.Stdin)
-	for NewScanner.Scan() {
-		if NewScanner.Text() != "" && !utils.IsExist(stacks.Instarctions, strings.TrimSpace(NewScanner.Text())) {
-			println("Error: instruction do not exist :", NewScanner.Text())
-			return
-		}
-	
-		if NewScanner.Text() != "" {
-			instarctions = append(instarctions, strings.TrimSpace(NewScanner.Text()))
-		}
-		
-	}
-	if err := NewScanner.Err(); err != nil {
-		println(err)
+	instarctions, err := utils.Scsn_Input()
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
 
-	fmt.Println(stack, instarctions,len(instarctions))
+	fmt.Println(stack, instarctions, len(instarctions))
 }
