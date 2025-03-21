@@ -111,10 +111,15 @@ func (s *All_Stacks) Ss() {
 	s.Sa()
 	s.Sb()
 }
-
+//ra rotate stack a (shift up all elements of stack a by 1, the first element becomes the last one)
 func (s *All_Stacks) Ra() {
 	if !s.IsEmpty(0) {
 		s.Stack_A = append(s.Stack_A[1:], s.Stack_A[0])
+	}
+}
+func (s *All_Stacks) Rb() {
+	if !s.IsEmpty(1) {
+		s.Stack_B = append(s.Stack_B[1:], s.Stack_B[0])
 	}
 }
 
