@@ -130,4 +130,16 @@ func (s *All_Stacks) Rr() {
 	s.Rb()
 }
 
+// rra reverse rotate a (shift down all elements of stack a by 1, the last element becomes the first one)
+func (s *All_Stacks) Rra() {
+	if !s.IsEmpty(0) {
+		num,_ := s.Pop(0)
+		// rest := s.Stack_A[:index]
+		// s.Stack_A = nil
+		// s.Stack_A = append(s.Stack_A, last)
+		// s.Stack_A = append(s.Stack_A, rest...)
+		s.Stack_A = append([]int{num},s.Stack_A... )
+	}
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}

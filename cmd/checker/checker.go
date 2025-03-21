@@ -34,5 +34,7 @@ func main() {
 	fmt.Println(all_stacks.Stack_A, instarctions)
 	all_stacks.Ra()
 	fmt.Println(all_stacks.Stack_A, instarctions)
+	all_stacks.Rra()
+	fmt.Println(all_stacks.Stack_A, instarctions)
 
 }
