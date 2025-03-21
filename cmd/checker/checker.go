@@ -14,10 +14,10 @@ func main() {
 		println()
 		return
 	}
+	
 
 	stack := os.Args[1]
 	instarctions := []string{}
-
 	NewScanner := bufio.NewScanner(os.Stdin)
 	for NewScanner.Scan() {
 		if NewScanner.Text() != "" && !utils.IsExist(stacks.Instarctions, strings.TrimSpace(NewScanner.Text())) {

@@ -14,4 +14,9 @@ rrb reverse rotate b
 rrr execute rra and rrb
 */
 
+type All_Stacks struct {
+	Stack_A []int
+	Stack_B []int
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
