@@ -6,6 +6,7 @@ import (
 	"os"
 	"push-swap/internal/stacks"
 	"slices"
+	"strconv"
 	"strings"
 )
 
@@ -32,4 +33,17 @@ func Scsn_Input() ([]string, error) {
 	}
 
 	return instarctions, nil
+}
+
+func Parse_stack(text string) (*stacks.All_Stacks, error) {
+	stacks := stacks.New_stacks()
+	stck := strings.Split(text, " ")
+	for _, v := range stck {
+		num, err := strconv.Atoi(v)
+		if err != nil {
+			return nil, err
+		}
+		stacks.Stack_A = append(stacks.Stack_A, num)
+	}
+	return stacks, nil
 }

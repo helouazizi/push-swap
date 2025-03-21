@@ -19,4 +19,11 @@ type All_Stacks struct {
 	Stack_B []int
 }
 
+func New_stacks() *All_Stacks {
+	return &All_Stacks{
+		Stack_A: []int{},
+		Stack_B: []int{},
+	}
+}
+
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"push-swap/internal/utils"
+	"slices"
 )
 
 func main() {
@@ -18,6 +19,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-
+	fmt.Println(slices.Reverse(stack))
 	fmt.Println(stack, instarctions, len(instarctions))
 }
