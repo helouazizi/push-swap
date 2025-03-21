@@ -38,6 +38,7 @@ func Scsn_Input() ([]string, error) {
 func Parse_stack(text string) (*stacks.All_Stacks, error) {
 	stacks := stacks.New_stacks()
 	stck := strings.Split(text, " ")
+	slices.Reverse(stck)
 	for _, v := range stck {
 		num, err := strconv.Atoi(v)
 		if err != nil {
