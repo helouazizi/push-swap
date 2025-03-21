@@ -21,15 +21,18 @@ func main() {
 	NewScanner := bufio.NewScanner(os.Stdin)
 	for NewScanner.Scan() {
 		if NewScanner.Text() != "" && !utils.IsExist(stacks.Instarctions, strings.TrimSpace(NewScanner.Text())) {
-			println("Instruction do not exist : %s", NewScanner.Text())
+			println("Error: instruction do not exist :", NewScanner.Text())
 			return
 		}
-		// println(NewScanner.Text())
-		instarctions = append(instarctions, NewScanner.Text())
+	
+		if NewScanner.Text() != "" {
+			instarctions = append(instarctions, strings.TrimSpace(NewScanner.Text()))
+		}
+		
 	}
 	if err := NewScanner.Err(); err != nil {
 		println(err)
 	}
 
-	fmt.Println(stack, instarctions)
+	fmt.Println(stack, instarctions,len(instarctions))
 }
