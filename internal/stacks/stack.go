@@ -133,12 +133,22 @@ func (s *All_Stacks) Rr() {
 // rra reverse rotate a (shift down all elements of stack a by 1, the last element becomes the first one)
 func (s *All_Stacks) Rra() {
 	if !s.IsEmpty(0) {
-		num,_ := s.Pop(0)
+		num, _ := s.Pop(0)
 		// rest := s.Stack_A[:index]
 		// s.Stack_A = nil
 		// s.Stack_A = append(s.Stack_A, last)
 		// s.Stack_A = append(s.Stack_A, rest...)
-		s.Stack_A = append([]int{num},s.Stack_A... )
+		s.Stack_A = append([]int{num}, s.Stack_A...)
+	}
+}
+func (s *All_Stacks) Rrb() {
+	if !s.IsEmpty(1) {
+		num, _ := s.Pop(1)
+		// rest := s.Stack_A[:index]
+		// s.Stack_A = nil
+		// s.Stack_A = append(s.Stack_A, last)
+		// s.Stack_A = append(s.Stack_A, rest...)
+		s.Stack_B = append([]int{num}, s.Stack_B...)
 	}
 }
 
