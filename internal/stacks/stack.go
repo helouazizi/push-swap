@@ -177,6 +177,16 @@ func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  error{
 			}
 			s.Pb(num)
 		case "sa":
+			num1 , err := s.Pop(0)
+			if err != nil {
+				return  err
+			}
+			num2 , err := s.Pop(0)
+			if err != nil {
+				return  err
+			}
+			s.Pa(num1)
+			s.Pa(num2)
 		case "sb":
 		case "ss":
 		case "ra":
