@@ -107,9 +107,16 @@ func (s *All_Stacks) Sb() error {
 }
 
 // execute sa and sb
-func (s *All_Stacks) Ss() {
-	s.Sa()
-	s.Sb()
+func (s *All_Stacks) Ss() error {
+	err := s.Sa()
+	if err != nil {
+		return err
+	}
+	errr := s.Sb()
+	if errr != nil {
+		return errr
+	}
+	return nil
 }
 
 // ra rotate stack a (shift up all elements of stack a by 1, the first element becomes the last one)
@@ -159,48 +166,34 @@ func (s *All_Stacks) Rrr() {
 	s.Rrb()
 }
 
-
 // this function about to execute all functiones below
-func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  error{
+func (s *All_Stacks) Execute_Instarcrions(instarctions []string) error {
 	for _, instarction := range instarctions {
 		switch instarction {
 		case "pa":
-			num , err := s.Pop(1)
+			num, err := s.Pop(1)
 			if err != nil {
-				return  err
+				return err
 			}
 			s.Pa(num)
 		case "pb":
-			num , err := s.Pop(0)
+			num, err := s.Pop(0)
 			if err != nil {
-				return  err
+				return err
 			}
 			s.Pb(num)
 		case "sa":
-			// num1 , err := s.Pop(0)
-			// if err != nil {
-			// 	return  err	
-			// }
-			// num2 , err := s.Pop(0)
-			// if err != nil {
-			// 	return  err
-			// }
-			// s.Pa(num1)
-			// s.Pa(num2)
-			s.Sa()
+			err := s.Sa()
+			if err != nil {
+				return err
+			}
 		case "sb":
-			num1 , err := s.Pop(1)
+			err := s.Sb()
 			if err != nil {
-				return  err	
+				return err
 			}
-			num2 , err := s.Pop(1)
-			if err != nil {
-				return  err
-			}
-			s.Pb(num1)
-			s.Pb(num2)
 		case "ss":
-			// in this case exactly we will just add sa and sp to the slice one more
+			s.Ss()
 		case "ra":
 		case "rb":
 		case "rr":
