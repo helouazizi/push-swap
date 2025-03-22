@@ -199,6 +199,7 @@ func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  error{
 			s.Pb(num1)
 			s.Pb(num2)
 		case "ss":
+			// in this case exactly we will just add sa and sp to the slice one more
 		case "ra":
 		case "rb":
 		case "rr":
