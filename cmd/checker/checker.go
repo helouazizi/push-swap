@@ -29,8 +29,9 @@ func main() {
 	if len(stacks.Instarctions) != 0 {
 		all_stacks.Execute_Instarcrions(instarctions)
 	}
-
-	//fmt.Println(all_stacks.Stack_A, all_stacks.Stack_B, instarctions)
+	//now if the stack a is sorted  and the stack b is empty 
+	// display ok folowed by \n
+	// otherwise display ko
 	fmt.Println("all instrctons are completed")
 
 }

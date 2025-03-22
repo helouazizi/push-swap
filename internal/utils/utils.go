@@ -22,7 +22,7 @@ func Scsn_Input() ([]string, error) {
 			//println("Error: instruction do not exist :", NewScanner.Text())
 			return nil, fmt.Errorf("error: instruction do not exist :%s", NewScanner.Text())
 		}
-		// lets check for 
+		// lets check for
 		if NewScanner.Text() != "" {
 			instarctions = append(instarctions, strings.TrimSpace(NewScanner.Text()))
 		}
@@ -47,4 +47,14 @@ func Parse_stack(text string) (*stacks.All_Stacks, error) {
 		stacks.Stack_A = append(stacks.Stack_A, num)
 	}
 	return stacks, nil
+}
+
+func GetMax(stack *stacks.All_Stacks) int {
+	num := stack.Stack_A[0]
+	for _, v := range stack.Stack_A {
+		if v >= num {
+			num = v
+		}
+	}
+	return num
 }
