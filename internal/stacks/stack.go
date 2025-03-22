@@ -63,23 +63,13 @@ func (s *All_Stacks) Pop(stack_num int) (int, error) {
 }
 
 // this function to push from b to a
-func (s *All_Stacks) Pa() error {
-	num, err := s.Pop(1)
-	if err != nil {
-		return err
-	}
+func (s *All_Stacks) Pa(num int) {
 	s.Stack_A = append(s.Stack_A, num)
-	return nil
 }
 
 // this function to push from a to b
-func (s *All_Stacks) Pb(num int) error {
-	num, err := s.Pop(0)
-	if err != nil {
-		return err
-	}
+func (s *All_Stacks) Pb(num int) {
 	s.Stack_B = append(s.Stack_B, num)
-	return nil
 }
 
 // this function swap two first elments of stack a
@@ -169,12 +159,17 @@ func (s *All_Stacks) Rrr() {
 	s.Rrb()
 }
 
+
 // this function about to execute all functiones below
-func (s *All_Stacks) Execute_Instarcrions(instarctions []string) {
+func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  error{
 	for _, instarction := range instarctions {
 		switch instarction {
 		case "pa":
-			s.Pa()
+			num , err := s.Pop(1)
+			if err != nil {
+				return  err
+			}
+			s.Pa(num)
 		case "pb":
 		case "sa":
 		case "sb":
@@ -187,6 +182,7 @@ func (s *All_Stacks) Execute_Instarcrions(instarctions []string) {
 		case "rrr":
 		}
 	}
+	return nil
 }
 
 var Instarctions = []string{"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr"}
