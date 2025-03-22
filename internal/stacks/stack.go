@@ -63,7 +63,11 @@ func (s *All_Stacks) Pop(stack_num int) (int, error) {
 }
 
 // this function to push from b to a
-func (s *All_Stacks) Pa(num int) {
+func (s *All_Stacks) Pa()error {
+	num ,err:= s.Pop(1)
+	if err != nil {
+		return  err
+	}
 	s.Stack_A = append(s.Stack_A, num)
 }
 
