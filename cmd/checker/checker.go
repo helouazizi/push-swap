@@ -24,23 +24,13 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	fmt.Println(all_stacks.Stack_A, all_stacks.Stack_B, instarctions)
 	// lets execute the instarcions on the stacks
 	if len(stacks.Instarctions) != 0 {
 		all_stacks.Execute_Instarcrions(instarctions)
 	}
- 	num, err := all_stacks.Pop(0)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("top elem from stack a", num)
-	fmt.Println(all_stacks.Stack_A, instarctions)
-	all_stacks.Sa()
-	fmt.Println(all_stacks.Stack_A, instarctions)
-	all_stacks.Ra()
-	fmt.Println(all_stacks.Stack_A, instarctions)
-	all_stacks.Rra()
-	fmt.Println(all_stacks.Stack_A, instarctions)
-	// now all instarctions are completed
+
+	fmt.Println(all_stacks.Stack_A, all_stacks.Stack_B, instarctions)
+	fmt.Println("all instrctons are completed")
 
 }
