@@ -17,6 +17,9 @@ func IsExist(arr []string, elm string) bool {
 func Scsn_Input() ([]string, error) {
 	instarctions := []string{}
 	NewScanner := bufio.NewScanner(os.Stdin)
+	if len(NewScanner.Bytes()) == 0 {
+		return nil, nil
+	}
 	for NewScanner.Scan() {
 		if NewScanner.Text() != "" && !IsExist(stacks.Instarctions, strings.TrimSpace(NewScanner.Text())) {
 			//println("Error: instruction do not exist :", NewScanner.Text())
