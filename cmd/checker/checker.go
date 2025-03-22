@@ -30,7 +30,7 @@ func main() {
 		all_stacks.Execute_Instarcrions(instarctions)
 	}
 
-	fmt.Println(all_stacks.Stack_A, all_stacks.Stack_B, instarctions)
+	//fmt.Println(all_stacks.Stack_A, all_stacks.Stack_B, instarctions)
 	fmt.Println("all instrctons are completed")
 
 }

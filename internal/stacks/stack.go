@@ -176,39 +176,50 @@ func (s *All_Stacks) Execute_Instarcrions(instarctions []string) error {
 				return err
 			}
 			s.Pa(num)
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "pb":
 			num, err := s.Pop(0)
 			if err != nil {
 				return err
 			}
 			s.Pb(num)
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "sa":
 			err := s.Sa()
 			if err != nil {
 				return err
 			}
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "sb":
 			err := s.Sb()
 			if err != nil {
 				return err
 			}
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "ss":
 			err := s.Ss()
 			if err != nil {
 				return err
 			}
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "ra":
 			s.Ra()
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "rb":
 			s.Rb()
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "rr":
 			s.Rr()
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "rra":
 			s.Rra()
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "rrb":
 			s.Rrb()
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		case "rrr":
 			s.Rrr()
+			fmt.Println(s.Stack_A, s.Stack_B, instarction)
 		}
 	}
 	return nil
