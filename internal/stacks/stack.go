@@ -206,6 +206,7 @@ func (s *All_Stacks) Execute_Instarcrions(instarctions []string) error {
 		case "rra":
 			s.Rra()
 		case "rrb":
+			s.Rrb()
 		case "rrr":
 		}
 	}
