@@ -165,18 +165,17 @@ func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  {
 	for _, instarction := range instarctions {
 		switch instarction {
 		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		case "pa":
-		
-
+			s.Pa()
+		case "pb":
+		case "sa":
+		case "sb":
+		case "ss":
+		case "ra":
+		case "rb":
+		case "rr":
+		case "rra":
+		case "rrb":
+		case "rrr":
 		}
 	}
 }
