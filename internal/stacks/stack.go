@@ -193,8 +193,12 @@ func (s *All_Stacks) Execute_Instarcrions(instarctions []string) error {
 				return err
 			}
 		case "ss":
-			s.Ss()
+			err := s.Ss()
+			if err != nil {
+				return err
+			}
 		case "ra":
+			s.Ra()
 		case "rb":
 		case "rr":
 		case "rra":
