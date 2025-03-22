@@ -63,17 +63,23 @@ func (s *All_Stacks) Pop(stack_num int) (int, error) {
 }
 
 // this function to push from b to a
-func (s *All_Stacks) Pa()error {
-	num ,err:= s.Pop(1)
+func (s *All_Stacks) Pa() error {
+	num, err := s.Pop(1)
 	if err != nil {
-		return  err
+		return err
 	}
 	s.Stack_A = append(s.Stack_A, num)
+	return nil
 }
 
 // this function to push from a to b
-func (s *All_Stacks) Pb(num int) {
+func (s *All_Stacks) Pb(num int) error {
+	num, err := s.Pop(0)
+	if err != nil {
+		return err
+	}
 	s.Stack_B = append(s.Stack_B, num)
+	return nil
 }
 
 // this function swap two first elments of stack a
@@ -163,9 +169,8 @@ func (s *All_Stacks) Rrr() {
 	s.Rrb()
 }
 
-
 // this function about to execute all functiones below
-func (s *All_Stacks) Execute_Instarcrions(instarctions []string)  {
+func (s *All_Stacks) Execute_Instarcrions(instarctions []string) {
 	for _, instarction := range instarctions {
 		switch instarction {
 		case "pa":
