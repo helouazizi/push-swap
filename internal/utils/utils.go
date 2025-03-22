@@ -22,7 +22,7 @@ func Scsn_Input() ([]string, error) {
 			//println("Error: instruction do not exist :", NewScanner.Text())
 			return nil, fmt.Errorf("error: instruction do not exist :%s", NewScanner.Text())
 		}
-
+		// lets check for 
 		if NewScanner.Text() != "" {
 			instarctions = append(instarctions, strings.TrimSpace(NewScanner.Text()))
 		}
