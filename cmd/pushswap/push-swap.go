@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
+	"push-swap/internal/stacks"
 	"push-swap/internal/utils"
 )
 
@@ -59,7 +61,39 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	fmt.Println(all_stacks.Stack_A, instarctions, "befor sorting")
+	Radix_Sort(all_stacks)
+	fmt.Println(all_stacks.Stack_A, instarctions, "after sorting")
+}
 
-	maximum := utils.GetMax(all_stacks)
-	println(all_stacks.Stack_A, instarctions, maximum)
+func Radix_Sort(stacks *stacks.All_Stacks) {
+	// Get the max number in Stack A
+	max := utils.GetMax(stacks)
+	// Determine the number of digits in max
+	digits := int(math.Log10(float64(max))) + 1
+
+	for d := 0; d < digits; d++ {
+		sizeA := len(stacks.Stack_A)
+
+		// Distribute elements into Stack B based on the current digit
+		for i := 0; i < sizeA; i++ {
+			elem, _ := stacks.Pop(0) // Pop from Stack A
+			digit := (elem / int(math.Pow(10, float64(d)))) % 10
+			stacks.Pb(elem) // Push to Stack B
+
+			// Move smaller digits to the top
+			if digit > 0 {
+				for j := 0; j < digit; j++ {
+					stacks.Rb()
+				}
+			}
+		}
+
+		// Move elements back to Stack A
+		sizeB := len(stacks.Stack_B)
+		for i := 0; i < sizeB; i++ {
+			elem, _ := stacks.Pop(1) // Pop from Stack B
+			stacks.Pa(elem)          // Push back to Stack A
+		}
+	}
 }
