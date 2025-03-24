@@ -20,6 +20,13 @@ func radixsort(stack []int) {
 	bits := utils.BitsCount(max)
 	// lets loop over bits
 	for b := 0 ; b < bits; b++ {
-		
+		// lts get the stack a size
+		sizeA := len(realstack.Stack_A)
+		// lets loop overr all the elemrnys on the stack a
+		for e := 0 ; e < sizeA ; e++ {
+			//lets get the top element
+			top , _ := realstack.Pop(0)
+			
+		}
 	}
 }
