@@ -26,7 +26,14 @@ func radixsort(stack []int) {
 		for e := 0 ; e < sizeA ; e++ {
 			//lets get the top element
 			top , _ := realstack.Pop(0)
-			
+			if (top>>b)&1 ==0 {
+				fmt.Println("pb")
+				realstack.Pb(top)
+			}else {
+				realstack.Pa(top)
+				fmt.Println("ra")
+				realstack.Ra()
+			}
 		}
 	}
 }
