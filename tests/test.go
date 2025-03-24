@@ -9,11 +9,11 @@ import (
 func main() {
 	stack := []int{3, 2, 1}
 	fmt.Println(stack, "befor")
-	radixsort(stack)
-	fmt.Println(stack, "after")
+	test := radixsort(stack)
+	fmt.Println(test, "after")
 }
 
-func radixsort(stack []int) {
+func radixsort(stack []int) *stacks.All_Stacks{
 	realstack := stacks.New_stacks()
 	realstack.Stack_A = stack
 	max := utils.GetMax(realstack)
@@ -42,4 +42,5 @@ func radixsort(stack []int) {
 			realstack.Pa(topElem)          // Push back to Stack A
 		}
 	}
+	return realstack
 }
