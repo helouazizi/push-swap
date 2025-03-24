@@ -35,5 +35,11 @@ func radixsort(stack []int) {
 				realstack.Ra()
 			}
 		}
+		// Move everything from Stack B back to Stack A (pa)
+		for len(realstack.Stack_B) > 0 {
+			topElem, _ := realstack.Pop(1) // Pop from Stack B
+			fmt.Println("pa")
+			realstack.Pa(topElem)          // Push back to Stack A
+		}
 	}
 }
