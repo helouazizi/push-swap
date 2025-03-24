@@ -72,26 +72,34 @@ func Radix_Sort(stacks *stacks.All_Stacks) {
 	// Determine the number of bits can be reprasented
 	bits := utils.BitsCount(max)
 
-	for d := 0; d < digits; d++ {
+	for b := 0; b < bits; b++ {
 		sizeA := len(stacks.Stack_A)
-
 		// Distribute elements into Stack B based on the current digit
 		for i := 0; i < sizeA; i++ {
-			elem, _ := stacks.Pop(0) // Pop from Stack A
-			digit := (elem / int(math.Pow(10, float64(d)))) % 10
-			stacks.Pb(elem) // Push to Stack B
+			if (stacks.Stack_A[0]>>i)&1 == 0 {
+				fmt.Println("pb")
+				stacks.Pb(stacks.Stack_A[0])
+				stacks.Pop(0)
+			} else {
+				fmt.Println("ra")
+				stacks.Ra()
+			}
+			// elem, _ := stacks.Pop(0) // Pop from Stack A
+			// digit := (elem / int(math.Pow(10, float64(b)))) % 10
+			// stacks.Pb(elem) // Push to Stack B
 
 			// Move smaller digits to the top
-			if digit > 0 {
-				for j := 0; j < digit; j++ {
-					stacks.Rb()
-				}
-			}
+			// if digit > 0 {
+			// 	for j := 0; j < digit; j++ {
+			// 		stacks.Rb()
+			// 	}
+			// }
 		}
 
 		// Move elements back to Stack A
 		sizeB := len(stacks.Stack_B)
 		for i := 0; i < sizeB; i++ {
+			fmt.Println("pa")
 			elem, _ := stacks.Pop(1) // Pop from Stack B
 			stacks.Pa(elem)          // Push back to Stack A
 		}
