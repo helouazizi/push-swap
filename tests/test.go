@@ -18,4 +18,8 @@ func radixsort(stack []int) {
 	realstack.Stack_A = stack
 	max := utils.GetMax(realstack)
 	bits := utils.BitsCount(max)
+	// lets loop over bits
+	for b := 0 ; b < bits; b++ {
+		
+	}
 }
