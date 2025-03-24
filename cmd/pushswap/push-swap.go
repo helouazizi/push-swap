@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"os"
 	"push-swap/internal/stacks"
 	"push-swap/internal/utils"
@@ -67,41 +66,32 @@ func main() {
 }
 
 func Radix_Sort(stacks *stacks.All_Stacks) {
-	// Get the max number in Stack A
-	max := utils.GetMax(stacks)
-	// Determine the number of bits can be reprasented
-	bits := utils.BitsCount(max)
+	max := utils.GetMax(stacks) // Get the max value in Stack_A
+	bits := utils.BitsCount(max)        // Get number of bits required
 
 	for b := 0; b < bits; b++ {
 		sizeA := len(stacks.Stack_A)
-		// Distribute elements into Stack B based on the current digit
+
+		// Move elements from Stack A to Stack B based on the b-th bit
 		for i := 0; i < sizeA; i++ {
-			if (stacks.Stack_A[0]>>i)&1 == 0 {
+			topElem, _ := stacks.Pop(0) // Pop from Stack A
+
+			if (topElem>>b)&1 == 0 { // If bit is 0 → push to Stack B (pb)
 				fmt.Println("pb")
-				stacks.Pb(stacks.Stack_A[0])
-				stacks.Pop(0)
-			} else {
+				stacks.Pb(topElem)
+			} else { // Otherwise, push it back to Stack A and rotate (ra)
+				stacks.Pa(topElem)
 				fmt.Println("ra")
 				stacks.Ra()
 			}
-			// elem, _ := stacks.Pop(0) // Pop from Stack A
-			// digit := (elem / int(math.Pow(10, float64(b)))) % 10
-			// stacks.Pb(elem) // Push to Stack B
-
-			// Move smaller digits to the top
-			// if digit > 0 {
-			// 	for j := 0; j < digit; j++ {
-			// 		stacks.Rb()
-			// 	}
-			// }
 		}
 
-		// Move elements back to Stack A
-		sizeB := len(stacks.Stack_B)
-		for i := 0; i < sizeB; i++ {
+		// Move everything from Stack B back to Stack A (pa)
+		for len(stacks.Stack_B) > 0 {
+			topElem, _ := stacks.Pop(1) // Pop from Stack B
 			fmt.Println("pa")
-			elem, _ := stacks.Pop(1) // Pop from Stack B
-			stacks.Pa(elem)          // Push back to Stack A
+			stacks.Pa(topElem)          // Push back to Stack A
 		}
 	}
 }
+
