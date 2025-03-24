@@ -63,7 +63,6 @@ func GetMax(stack *stacks.All_Stacks) int {
 }
 
 func BitsCount(num int) int {
-
 	count := 0
 	for num > 0 {
 		num >>= 1
