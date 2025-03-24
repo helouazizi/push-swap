@@ -94,9 +94,10 @@ func main() {
 		}
 		a.values = append(a.values, n)
 	}
-
+	fmt.Println(a.values)
 	instructions := generateInstructions(&a)
 	for _, instr := range instructions {
 		fmt.Println(instr)
 	}
+	fmt.Println(a.values)
 }
