@@ -70,3 +70,10 @@ func BitsCount(num int) int {
 	}
 	return count
 }
+
+func Abs(num int) int {
+	if num < 0 {
+		return -num
+	}
+	return num
+}

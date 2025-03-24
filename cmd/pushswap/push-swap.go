@@ -69,8 +69,8 @@ func main() {
 func Radix_Sort(stacks *stacks.All_Stacks) {
 	// Get the max number in Stack A
 	max := utils.GetMax(stacks)
-	// Determine the number of digits in max
-	digits := int(math.Log10(float64(max))) + 1
+	// Determine the number of bits can be reprasented
+	bits := utils.BitsCount(max)
 
 	for d := 0; d < digits; d++ {
 		sizeA := len(stacks.Stack_A)
