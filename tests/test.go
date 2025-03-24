@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"strconv"
@@ -52,44 +51,31 @@ func isSorted(s *Stack) bool {
 	return true
 }
 
-func executeInstructions(a, b *Stack, instructions []string) bool {
-	for _, instr := range instructions {
-		switch instr {
-		case "sa":
+func generateInstructions(a *Stack) []string {
+	var instructions []string
+	var b Stack
+
+	for !isSorted(a) {
+		if len(a.values) > 1 && a.values[0] > a.values[1] {
+			instructions = append(instructions, "sa")
 			a.Swap()
-		case "sb":
-			b.Swap()
-		case "ss":
-			a.Swap()
-			b.Swap()
-		case "pa":
-			if v, ok := b.Pop(); ok {
-				a.Push(v)
-			}
-		case "pb":
+		}
+		if !isSorted(a) {
+			instructions = append(instructions, "pb")
 			if v, ok := a.Pop(); ok {
 				b.Push(v)
 			}
-		case "ra":
-			a.Rotate()
-		case "rb":
-			b.Rotate()
-		case "rr":
-			a.Rotate()
-			b.Rotate()
-		case "rra":
-			a.ReverseRotate()
-		case "rrb":
-			b.ReverseRotate()
-		case "rrr":
-			a.ReverseRotate()
-			b.ReverseRotate()
-		default:
-			fmt.Fprintln(os.Stderr, "Error")
-			return false
 		}
 	}
-	return isSorted(a) && len(b.values) == 0
+
+	for len(b.values) > 0 {
+		instructions = append(instructions, "pa")
+		if v, ok := b.Pop(); ok {
+			a.Push(v)
+		}
+	}
+
+	return instructions
 }
 
 func main() {
@@ -99,7 +85,6 @@ func main() {
 
 	args := strings.Split(os.Args[1], " ")
 	var a Stack
-	var b Stack
 
 	for _, arg := range args {
 		n, err := strconv.Atoi(arg)
@@ -110,20 +95,8 @@ func main() {
 		a.values = append(a.values, n)
 	}
 
-	scanner := bufio.NewScanner(os.Stdin)
-	var instructions []string
-	for scanner.Scan() {
-		instructions = append(instructions, scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		fmt.Fprintln(os.Stderr, "Error")
-		return
-	}
-
-	if executeInstructions(&a, &b, instructions) {
-		fmt.Println("OK")
-	} else {
-		fmt.Println("KO")
+	instructions := generateInstructions(&a)
+	for _, instr := range instructions {
+		fmt.Println(instr)
 	}
 }
