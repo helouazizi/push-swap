@@ -100,4 +100,5 @@ func main() {
 		fmt.Println(instr)
 	}
 	fmt.Println(a.values)
+
 }
