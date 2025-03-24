@@ -1,7 +1,7 @@
 package main
 
 import (
-	"errors"
+	"bufio"
 	"fmt"
 	"os"
 	"strconv"
@@ -9,97 +9,87 @@ import (
 )
 
 type Stack struct {
-	Elements []int
+	values []int
 }
 
-func (s *Stack) Push(val int) {
-	s.Elements = append(s.Elements, val)
+func (s *Stack) Push(v int) {
+	s.values = append([]int{v}, s.values...)
 }
 
-func (s *Stack) Pop() (int, error) {
-	if len(s.Elements) == 0 {
-		return 0, errors.New("stack is empty")
+func (s *Stack) Pop() (int, bool) {
+	if len(s.values) == 0 {
+		return 0, false
 	}
-	n := s.Elements[len(s.Elements)-1]
-	s.Elements = s.Elements[:len(s.Elements)-1]
-	return n, nil
+	v := s.values[0]
+	s.values = s.values[1:]
+	return v, true
 }
 
 func (s *Stack) Swap() {
-	if len(s.Elements) < 2 {
-		return
+	if len(s.values) > 1 {
+		s.values[0], s.values[1] = s.values[1], s.values[0]
 	}
-	s.Elements[len(s.Elements)-1], s.Elements[len(s.Elements)-2] = s.Elements[len(s.Elements)-2], s.Elements[len(s.Elements)-1]
 }
 
 func (s *Stack) Rotate() {
-	if len(s.Elements) < 2 {
-		return
+	if len(s.values) > 1 {
+		s.values = append(s.values[1:], s.values[0])
 	}
-	first := s.Elements[0]
-	s.Elements = append(s.Elements[1:], first)
 }
 
 func (s *Stack) ReverseRotate() {
-	if len(s.Elements) < 2 {
-		return
+	if len(s.values) > 1 {
+		s.values = append([]int{s.values[len(s.values)-1]}, s.values[:len(s.values)-1]...)
 	}
-	last := s.Elements[len(s.Elements)-1]
-	s.Elements = append([]int{last}, s.Elements[:len(s.Elements)-1]...)
 }
 
-func parseArgs(args []string) ([]int, error) {
-	if len(args) == 0 {
-		return nil, nil
-	}
-	nums := []int{}
-	set := map[int]bool{}
-
-	for _, arg := range strings.Fields(args[0]) {
-		n, err := strconv.Atoi(arg)
-		if err != nil {
-			return nil, errors.New("Error")
+func isSorted(s *Stack) bool {
+	for i := 1; i < len(s.values); i++ {
+		if s.values[i-1] > s.values[i] {
+			return false
 		}
-		if set[n] {
-			return nil, errors.New("Error")
-		}
-		set[n] = true
-		nums = append(nums, n)
 	}
-	return nums, nil
+	return true
 }
 
-func radixSort(a *Stack, b *Stack) {
-	maxNum := 0
-	for _, v := range a.Elements {
-		if v > maxNum {
-			maxNum = v
-		}
-	}
-
-	bits := 0
-	for (maxNum >> bits) > 0 {
-		bits++
-	}
-
-	for i := 0; i < bits; i++ {
-		count := len(a.Elements)
-		for j := 0; j < count; j++ {
-			if (a.Elements[0]>>i)&1 == 0 {
-				b.Push(a.Elements[0])
-				a.Elements = a.Elements[1:]
-				fmt.Println("pb")
-			} else {
-				a.Rotate()
-				fmt.Println("ra")
+func executeInstructions(a, b *Stack, instructions []string) bool {
+	for _, instr := range instructions {
+		switch instr {
+		case "sa":
+			a.Swap()
+		case "sb":
+			b.Swap()
+		case "ss":
+			a.Swap()
+			b.Swap()
+		case "pa":
+			if v, ok := b.Pop(); ok {
+				a.Push(v)
 			}
-		}
-		for len(b.Elements) > 0 {
-			a.Push(b.Elements[len(b.Elements)-1])
-			b.Elements = b.Elements[:len(b.Elements)-1]
-			fmt.Println("pa")
+		case "pb":
+			if v, ok := a.Pop(); ok {
+				b.Push(v)
+			}
+		case "ra":
+			a.Rotate()
+		case "rb":
+			b.Rotate()
+		case "rr":
+			a.Rotate()
+			b.Rotate()
+		case "rra":
+			a.ReverseRotate()
+		case "rrb":
+			b.ReverseRotate()
+		case "rrr":
+			a.ReverseRotate()
+			b.ReverseRotate()
+		default:
+			fmt.Fprintln(os.Stderr, "Error")
+			return false
 		}
 	}
+	return isSorted(a) && len(b.values) == 0
 }
 
 func main() {
@@ -107,15 +97,33 @@ func main() {
 		return
 	}
 
-	numbers, err := parseArgs(os.Args[1:])
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error")
-		os.Exit(1)
+	args := strings.Split(os.Args[1], " ")
+	var a Stack
+	var b Stack
+
+	for _, arg := range args {
+		n, err := strconv.Atoi(arg)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error")
+			return
+		}
+		a.values = append(a.values, n)
 	}
 
-	stackA := &Stack{Elements: numbers}
-	stackB := &Stack{}
-	fmt.Println(stackA.Elements)
-	radixSort(stackA, stackB)
-	fmt.Println(stackA.Elements)
+	scanner := bufio.NewScanner(os.Stdin)
+	var instructions []string
+	for scanner.Scan() {
+		instructions = append(instructions, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintln(os.Stderr, "Error")
+		return
+	}
+
+	if executeInstructions(&a, &b, instructions) {
+		fmt.Println("OK")
+	} else {
+		fmt.Println("KO")
+	}
 }
