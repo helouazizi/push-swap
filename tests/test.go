@@ -7,9 +7,22 @@ import (
 	"strings"
 )
 
-type Stack struct {
-	values []int
-}
+
+type Operation string
+
+const (
+    PA Operation = "pa"
+    PB Operation = "pb"
+    SA Operation = "sa"
+    SB Operation = "sb"
+    SS Operation = "ss"
+    RA Operation = "ra"
+    RB Operation = "rb"
+    RR Operation = "rr"
+    RRA Operation = "rra"
+    RRB Operation = "rrb"
+    RRR Operation = "rrr"
+)
 
 func (s *Stack) Push(v int) {
 	s.values = append([]int{v}, s.values...)
