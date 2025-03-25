@@ -19,11 +19,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Generate sorting operations
-	operations := generateOperations(stackA)
+	// // Generate sorting operations
+	// operations := generateOperations(stackA)
 
-	// Print operations
-	for _, op := range operations {
-		fmt.Println(string(op))
-	}
+	// // Print operations
+	// for _, op := range operations {
+	// 	fmt.Println(string(op))
+	// }
 }

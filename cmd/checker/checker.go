@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"push-swap/internal/stacks"
+	"push-swap/internal/utils"
 )
 
 func main() {
@@ -13,13 +15,13 @@ func main() {
 	}
 
 	// Parse initial stack
-	stackA := parseArgs(args)
+	stackA := utils.ParseArgs(args)
 	if stackA == nil {
 		fmt.Fprintln(os.Stderr, "Error")
 		os.Exit(1)
 	}
 
-	stackB := &Stack{}
+	stackB := stacks.New_stacks()
 
 	// Read and execute operations
 	scanner := bufio.NewScanner(os.Stdin)
