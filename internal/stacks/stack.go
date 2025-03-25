@@ -15,12 +15,12 @@ rrr execute rra and rrb
 */
 
 type Stack struct {
-	items []int
+	Items []int
 }
 
 func New_stacks() *Stack {
 	return &Stack{
-		items: []int{},
+		Items: make([]int, 0),
 	}
 }
 
