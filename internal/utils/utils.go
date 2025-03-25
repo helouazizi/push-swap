@@ -65,7 +65,7 @@ func BitsCount(num int) int {
 	}
 	return count
 }
-func parseArgs(args []string) *stacks.Stack {
+func ParseArgs(args []string) *stacks.Stack {
 	stack := stacks.New_stacks()
 
 	// Parse arguments into integers
