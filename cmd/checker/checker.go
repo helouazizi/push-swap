@@ -24,12 +24,12 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(all_stacks.Stack_A, all_stacks.Stack_B, instarctions)
+	fmt.Println(all_stacks.Itims, instarctions)
 	// lets execute the instarcions on the stacks
 	if len(stacks.Instarctions) != 0 {
-		all_stacks.Execute_Instarcrions(instarctions)
+		//all_stacks.Execute_Instarcrions(instarctions)
 	}
-	//now if the stack a is sorted  and the stack b is empty 
+	//now if the stack a is sorted  and the stack b is empty
 	// display ok folowed by \n
 	// otherwise display ko
 	fmt.Println("all instrctons are completed")

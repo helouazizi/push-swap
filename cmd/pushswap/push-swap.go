@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"push-swap/internal/stacks"
 	"push-swap/internal/utils"
 )
 
@@ -55,43 +54,42 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	all_stacks, err := utils.Parse_stack(stack)
+	stack_pointer, err := utils.Parse_stack(stack)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(all_stacks.Stack_A, instarctions, "befor sorting")
-	Radix_Sort(all_stacks)
-	fmt.Println(all_stacks.Stack_A, instarctions, "after sorting")
+	fmt.Println(stack_pointer.Itims, instarctions, "befor sorting")
+	//Radix_Sort(all_stacks)
+	fmt.Println(stack_pointer.Itims, instarctions, "after sorting")
 }
 
-func Radix_Sort(stacks *stacks.All_Stacks) {
-	max := utils.GetMax(stacks) // Get the max value in Stack_A
-	bits := utils.BitsCount(max)        // Get number of bits required
+// func Radix_Sort(stacks *stacks.All_Stacks) {
+// 	max := utils.GetMax(stacks)  // Get the max value in Stack_A
+// 	bits := utils.BitsCount(max) // Get number of bits required
 
-	for b := 0; b < bits; b++ {
-		sizeA := len(stacks.Stack_A)
+// 	for b := 0; b < bits; b++ {
+// 		sizeA := len(stacks.Stack_A)
 
-		// Move elements from Stack A to Stack B based on the b-th bit
-		for i := 0; i < sizeA; i++ {
-			topElem, _ := stacks.Pop(0) // Pop from Stack A
+// 		// Move elements from Stack A to Stack B based on the b-th bit
+// 		for i := 0; i < sizeA; i++ {
+// 			topElem, _ := stacks.Pop(0) // Pop from Stack A
 
-			if (topElem>>b)&1 == 0 { // If bit is 0 → push to Stack B (pb)
-				fmt.Println("pb")
-				stacks.Pb(topElem)
-			} else { // Otherwise, push it back to Stack A and rotate (ra)
-				stacks.Pa(topElem)
-				fmt.Println("ra")
-				stacks.Ra()
-			}
-		}
+// 			if (topElem>>b)&1 == 0 { // If bit is 0 → push to Stack B (pb)
+// 				fmt.Println("pb")
+// 				stacks.Pb(topElem)
+// 			} else { // Otherwise, push it back to Stack A and rotate (ra)
+// 				stacks.Pa(topElem)
+// 				fmt.Println("ra")
+// 				stacks.Ra()
+// 			}
+// 		}
 
-		// Move everything from Stack B back to Stack A (pa)
-		for len(stacks.Stack_B) > 0 {
-			topElem, _ := stacks.Pop(1) // Pop from Stack B
-			fmt.Println("pa")
-			stacks.Pa(topElem)          // Push back to Stack A
-		}
-	}
-}
-
+// 		// Move everything from Stack B back to Stack A (pa)
+// 		for len(stacks.Stack_B) > 0 {
+// 			topElem, _ := stacks.Pop(1) // Pop from Stack B
+// 			fmt.Println("pa")
+// 			stacks.Pa(topElem) // Push back to Stack A
+// 		}
+// 	}
+// }

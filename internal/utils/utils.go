@@ -38,7 +38,7 @@ func Scsn_Input() ([]string, error) {
 	return instarctions, nil
 }
 
-func Parse_stack(text string) (*stacks.All_Stacks, error) {
+func Parse_stack(text string) (*stacks.Stack, error) {
 	stacks := stacks.New_stacks()
 	stck := strings.Split(strings.TrimSpace(text), " ")
 	slices.Reverse(stck)
@@ -47,14 +47,14 @@ func Parse_stack(text string) (*stacks.All_Stacks, error) {
 		if err != nil {
 			return nil, fmt.Errorf("error: invalid number '%v'", (v))
 		}
-		stacks.Stack_A = append(stacks.Stack_A, num)
+		stacks.Itims = append(stacks.Itims, num)
 	}
 	return stacks, nil
 }
 
-func GetMax(stack *stacks.All_Stacks) int {
-	num := stack.Stack_A[0]
-	for _, v := range stack.Stack_A {
+func GetMax(stack *stacks.Stack) int {
+	num := stack.Itims[0]
+	for _, v := range stack.Itims {
 		if v >= num {
 			num = v
 		}
@@ -70,7 +70,15 @@ func BitsCount(num int) int {
 	}
 	return count
 }
-
+func IsSorted(stack *stacks.Stack) bool {
+	items := stack.Itims
+	for i := 1; i < len(items); i++ {
+		if items[i-1] > items[i] {
+			return false
+		}
+	}
+	return true
+}
 func Abs(num int) int {
 	if num < 0 {
 		return -num
