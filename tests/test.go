@@ -6,6 +6,9 @@ import (
 	"strconv"
 	"strings"
 )
+type Stack struct {
+    items []int
+}
 
 
 type Operation string
@@ -23,36 +26,47 @@ const (
     RRB Operation = "rrb"
     RRR Operation = "rrr"
 )
-
-func (s *Stack) Push(v int) {
-	s.values = append([]int{v}, s.values...)
+func (s *Stack) Push(value int) {
+    s.items = append([]int{value}, s.items...)
 }
 
 func (s *Stack) Pop() (int, bool) {
-	if len(s.values) == 0 {
-		return 0, false
-	}
-	v := s.values[0]
-	s.values = s.values[1:]
-	return v, true
+    if len(s.items) == 0 {
+        return 0, false
+    }
+   	value := s.items[0]
+   	s.items = s.items[1:]
+   	return value, true
 }
 
-func (s *Stack) Swap() {
-	if len(s.values) > 1 {
-		s.values[0], s.values[1] = s.values[1], s.values[0]
-	}
+func (s *Stack) Top() (int, bool) {
+   	if len(s.items) == 0 {
+   		return 0, false
+   	}
+   	return s.items[0], true
 }
 
 func (s *Stack) Rotate() {
-	if len(s.values) > 1 {
-		s.values = append(s.values[1:], s.values[0])
-	}
+   	if len(s.items) < 2 {
+   		return
+   	}
+   	first := s.items[0]
+   	s.items = append(s.items[1:], first)
 }
 
 func (s *Stack) ReverseRotate() {
-	if len(s.values) > 1 {
-		s.values = append([]int{s.values[len(s.values)-1]}, s.values[:len(s.values)-1]...)
-	}
+   	if len(s.items) < 2 {
+   		return
+   	}
+   	last := s.items[len(s.items)-1]
+   	s.items = append([]int{last}, s.items[:len(s.items)-1]...)
+}
+
+func (s *Stack) Swap() {
+   	if len(s.items) < 2 {
+   		return
+   	}
+   	s.items[0], s.items[1] = s.items[1], s.items[0]
 }
 
 func isSorted(s *Stack) bool {
