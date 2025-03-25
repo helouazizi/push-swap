@@ -1,64 +1,55 @@
 package main
 
-type Stack struct {
-	items []int
-}
-
-type Operation string
-
-const (
-	PA  Operation = "pa"
-	PB  Operation = "pb"
-	SA  Operation = "sa"
-	SB  Operation = "sb"
-	SS  Operation = "ss"
-	RA  Operation = "ra"
-	RB  Operation = "rb"
-	RR  Operation = "rr"
-	RRA Operation = "rra"
-	RRB Operation = "rrb"
-	RRR Operation = "rrr"
+import (
+	"fmt"
+	"os"
+	"strconv"
 )
 
-func (s *Stack) Push(value int) {
-	s.items = append([]int{value}, s.items...)
-}
 
-func (s *Stack) Pop() (int, bool) {
-	if len(s.items) == 0 {
-		return 0, false
-	}
-	value := s.items[0]
-	s.items = s.items[1:]
-	return value, true
-}
 
-func (s *Stack) Top() (int, bool) {
-	if len(s.items) == 0 {
-		return 0, false
-	}
-	return s.items[0], true
-}
-
-func (s *Stack) Rotate() {
-	if len(s.items) < 2 {
+func main() {
+	args := os.Args[1:]
+	if len(args) == 0 {
 		return
 	}
-	first := s.items[0]
-	s.items = append(s.items[1:], first)
+
+	// Parse initial stack
+	stackA := parseArgs(args)
+	if stackA == nil {
+		fmt.Fprintln(os.Stderr, "Error")
+		os.Exit(1)
+	}
+
+	// Generate sorting operations
+	operations := generateOperations(stackA)
+
+	// Print operations
+	for _, op := range operations {
+		fmt.Println(string(op))
+	}
 }
 
-func (s *Stack) ReverseRotate() {
-	if len(s.items) < 2 {
-		return
+func parseArgs(args []string) *Stack {
+	stack := &Stack{}
+
+	// Parse arguments into integers
+	for i := len(args) - 1; i >= 0; i-- {
+		num, err := strconv.Atoi(args[i])
+		if err != nil || contains(stack.items, num) {
+			return nil
+		}
+		stack.Push(num)
 	}
-	last := s.items[len(s.items)-1]
-	s.items = append([]int{last}, s.items[:len(s.items)-1]...)
+
+	return stack
 }
 
-func (s *Stack) Swap() {
-	if len(s.items) < 2 {
-		return
+func contains(items []int, target int) bool {
+	for _, item := range items {
+		if item == target {
+			return true
+		}
 	}
-	s.items[0], s.items[1] = s.items[1], s.items[0]
+	return false
 }
