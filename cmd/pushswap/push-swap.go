@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"push-swap/internal/algorithm"
 	"push-swap/internal/parser"
 	"push-swap/internal/stack"
 	"slices"
@@ -22,7 +23,7 @@ func main() {
 	}
 
 	a := stack.New()
-	//b := stack.New()
+	b := stack.New()
 
 	// to folow the subject instarctions
 	//The first integer should be at the top of the stack.
@@ -33,8 +34,9 @@ func main() {
 	}
 	fmt.Println(a.Items)
 
-	//operations := algorithm.SortStack(a, b)
-
+	operations := algorithm.SortStack(a, b)
+	fmt.Println(operations)
+	fmt.Println(a.Items)
 	// for _, op := range operations {
 	// 	fmt.Println(op)
 	// }
