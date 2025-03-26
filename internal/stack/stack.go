@@ -21,7 +21,7 @@ rrr execute rra and rrb
 // internal/stack/stack.go
 
 type Stack struct {
-	items []int
+	Items []int
 }
 
 func New() *Stack {
@@ -29,47 +29,47 @@ func New() *Stack {
 }
 
 func (s *Stack) Push(val int) {
-	s.items = append(s.items, val)
+	s.Items = append(s.Items, val)
 }
 
 func (s *Stack) Pop() (int, error) {
-	if len(s.items) == 0 {
+	if len(s.Items) == 0 {
 		return 0, errors.New("stack is empty")
 	}
-	val := s.items[len(s.items)-1]
-	s.items = s.items[:len(s.items)-1]
+	val := s.Items[len(s.Items)-1]
+	s.Items = s.Items[:len(s.Items)-1]
 	return val, nil
 }
 
 func (s *Stack) Swap() error {
-	if len(s.items) < 2 {
+	if len(s.Items) < 2 {
 		return errors.New("not enough elements to swap")
 	}
-	s.items[0], s.items[1] = s.items[1], s.items[0]
+	s.Items[0], s.Items[1] = s.Items[1], s.Items[0]
 	return nil
 }
 
 func (s *Stack) Rotate() {
-	if len(s.items) > 1 {
-		s.items = append(s.items[1:], s.items[0])
+	if len(s.Items) > 1 {
+		s.Items = append(s.Items[1:], s.Items[0])
 	}
 }
 
 func (s *Stack) ReverseRotate() {
-	if len(s.items) > 1 {
-		s.items = append([]int{s.items[len(s.items)-1]}, s.items[:len(s.items)-1]...)
+	if len(s.Items) > 1 {
+		s.Items = append([]int{s.Items[len(s.Items)-1]}, s.Items[:len(s.Items)-1]...)
 	}
 }
 
 func (s *Stack) Print() {
-	for i := len(s.items) - 1; i >= 0; i-- {
-		fmt.Println(s.items[i])
+	for i := len(s.Items) - 1; i >= 0; i-- {
+		fmt.Println(s.Items[i])
 	}
 }
 
 // Push from one stack to another
 func Push(from, to *Stack) error {
-	if len(from.items) == 0 {
+	if len(from.Items) == 0 {
 		return errors.New("source stack is empty")
 	}
 	val, _ := from.Pop()
@@ -99,4 +99,3 @@ func ReverseRotateBoth(a, b *Stack) {
 	a.ReverseRotate()
 	b.ReverseRotate()
 }
-
