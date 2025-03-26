@@ -1,37 +1,79 @@
+// cmd/checker/checker.go
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"push-swap/internal/stacks"
-	"push-swap/internal/utils"
+	"push-swap/internal/parser"
+	"push-swap/internal/stack"
+	"strings"
 )
 
 func main() {
-	if len(os.Args) <= 1 {
-		println()
+	if len(os.Args) < 2 {
 		return
+	}
+	input := os.Args[1]
+	values, err := parser.ParseArgs(input)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error")
+		os.Exit(1)
 	}
 
-	stack := os.Args[1]
-	instarctions, err := utils.Scsn_Input()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	all_stacks, err := utils.Parse_stack(stack)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(all_stacks.Itims, instarctions)
-	// lets execute the instarcions on the stacks
-	if len(stacks.Instarctions) != 0 {
-		//all_stacks.Execute_Instarcrions(instarctions)
-	}
-	//now if the stack a is sorted  and the stack b is empty
-	// display ok folowed by \n
-	// otherwise display ko
-	fmt.Println("all instrctons are completed")
+	a := stack.New()
+	b := stack.New()
 
+	for _, val := range values {
+		a.Push(val)
+	}
+
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		instruction := strings.TrimSpace(scanner.Text())
+		switch instruction {
+		case "pa":
+			stack.Push(b, a)
+		case "pb":
+			stack.Push(a, b)
+		case "sa":
+			a.Swap()
+		case "sb":
+			b.Swap()
+		case "ss":
+			stack.SwapBoth(a, b)
+		case "ra":
+			a.Rotate()
+		case "rb":
+			b.Rotate()
+		case "rr":
+			stack.RotateBoth(a, b)
+		case "rra":
+			a.ReverseRotate()
+		case "rrb":
+			b.ReverseRotate()
+		case "rrr":
+			stack.ReverseRotateBoth(a, b)
+		default:
+			fmt.Fprintln(os.Stderr, "Error")
+			os.Exit(1)
+		}
+	}
+
+	if isSorted(a) && len(b.Items) == 0 {
+		fmt.Println("OK")
+	} else {
+		fmt.Println("KO")
+	}
+}
+
+// isSorted checks if the stack is sorted in ascending order.
+func isSorted(s *stack.Stack) bool {
+	items := s.Items
+	for i := 1; i < len(items); i++ {
+		if items[i-1] > items[i] {
+			return false
+		}
+	}
+	return true
 }
