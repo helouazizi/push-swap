@@ -66,3 +66,37 @@ func (s *Stack) Print() {
 		fmt.Println(s.items[i])
 	}
 }
+
+// Push from one stack to another
+func Push(from, to *Stack) error {
+	if len(from.items) == 0 {
+		return errors.New("source stack is empty")
+	}
+	val, _ := from.Pop()
+	to.Push(val)
+	return nil
+}
+
+// Execute both swaps
+func SwapBoth(a, b *Stack) error {
+	if err := a.Swap(); err != nil {
+		return err
+	}
+	if err := b.Swap(); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Execute both rotations
+func RotateBoth(a, b *Stack) {
+	a.Rotate()
+	b.Rotate()
+}
+
+// Execute both reverse rotations
+func ReverseRotateBoth(a, b *Stack) {
+	a.ReverseRotate()
+	b.ReverseRotate()
+}
+
