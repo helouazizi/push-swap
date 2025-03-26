@@ -4,7 +4,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"push-swap/internal/algorithm"
 	"push-swap/internal/parser"
 	"push-swap/internal/stack"
 )
@@ -22,15 +21,16 @@ func main() {
 	}
 
 	a := stack.New()
-	b := stack.New()
+	//b := stack.New()
 
 	for _, val := range values {
 		a.Push(val)
 	}
+	fmt.Println(a.Items)
 
-	operations := algorithm.SortStack(a, b)
+	//operations := algorithm.SortStack(a, b)
 
-	for _, op := range operations {
-		fmt.Println(op)
-	}
+	// for _, op := range operations {
+	// 	fmt.Println(op)
+	// }
 }
