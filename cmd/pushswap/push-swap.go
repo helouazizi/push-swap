@@ -17,7 +17,7 @@ func main() {
 	input := os.Args[1]
 	values, err := parser.ParseArgs(input)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, "Error")
 		os.Exit(1)
 	}
 
