@@ -53,23 +53,23 @@ func findMaxIndex(s *stack.Stack) int {
 
 // moveToTop moves the smallest element to the top using the fewest rotations.
 func moveToTop(a, b *stack.Stack, index int, operations *[]string) {
-	fmt.Println(len(a.Items), "len of stack a")
+	fmt.Println(len(a.Items)/2,index, "len of stack a")
 	if index >= len(a.Items)/2 {
 		// Rotate to move the smallest element to the top
 		for i := index; i < len(a.Items); i++ {
-			// if index > len(a.Items) {
-			// 	fmt.Println(true)
-			// }
+			if index == len(a.Items)-1 {
+				break
+			}
 			a.Rotate()
+			fmt.Println(a.Items,"after ra")
 			*operations = append(*operations, "ra")
 		}
 		fmt.Println(a.Items, "inside moove up ra")
 	} else {
 		// Reverse rotate to move the smallest element to the top
-		fmt.Println("first")
 		for i := len(a.Items) - 1 - index; i > 0; i-- {
 			a.ReverseRotate()
-			fmt.Println(a.Items, "rra")
+			fmt.Println(a.Items,"after rra")
 			*operations = append(*operations, "rra")
 		}
 		fmt.Println(a.Items, "inside moove up rra")
