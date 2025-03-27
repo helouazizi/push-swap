@@ -2,6 +2,7 @@
 package algorithm
 
 import (
+	"fmt"
 	"push-swap/internal/stack"
 )
 
@@ -11,15 +12,17 @@ func SortStack(a, b *stack.Stack) []string {
 
 	// Simple sorting logic (placeholder for an optimal algorithm)
 	for len(a.Items) > 0 {
-		minIdx := findMinIndex(a)            // Find the index of the minimum element
+		minIdx := findMinIndex(a)  
+		fmt.Println(minIdx,a.Items[minIdx])          // Find the index of the minimum element
 		moveToTop(a, b, minIdx, &operations) // Move the minimum element to the top of stack a
 		stack.Push(a, b)                     // Push the minimum element to stack b
 		operations = append(operations, "pb")
 
 		// Debugging: Print the current state of the stacks
 		// fmt.Println("After operation: pb")
-		// fmt.Println("Stack A:", a.Items)
-		// fmt.Println("Stack B:", b.Items)
+		
+		fmt.Println("Stack A:", a.Items)
+		fmt.Println("Stack B:", b.Items)
 	}
 
 	// Move everything back to stack a
