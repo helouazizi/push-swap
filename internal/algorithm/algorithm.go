@@ -2,7 +2,6 @@
 package algorithm
 
 import (
-	"fmt"
 	"push-swap/internal/stack"
 )
 
@@ -60,7 +59,7 @@ func moveToTop(a, b *stack.Stack, index int, operations *[]string) {
 			// }
 			a.Rotate()
 			//index++
-			fmt.Println(a.Items)
+			//fmt.Println(a.Items)
 			*operations = append(*operations, "ra")
 		}
 	} else {

@@ -37,6 +37,7 @@ func main() {
 	operations := algorithm.SortStack(a, b)
 	fmt.Println(operations)
 	fmt.Println(a.Items)
+	
 	// for _, op := range operations {
 	// 	fmt.Println(op)
 	// }
