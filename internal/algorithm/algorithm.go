@@ -12,7 +12,7 @@ func SortStack(a, b *stack.Stack) []string {
 
 	// Simple sorting logic (placeholder for an optimal algorithm)
 	for len(a.Items) > 0 {
-		minIdx := findMinIndex(a)  
+		minIdx := findMaxIndex(a)  
 		fmt.Println(minIdx,a.Items[minIdx])          // Find the index of the minimum element
 		moveToTop(a, b, minIdx, &operations) // Move the minimum element to the top of stack a
 		stack.Push(a, b)                     // Push the minimum element to stack b
@@ -39,16 +39,16 @@ func SortStack(a, b *stack.Stack) []string {
 }
 
 // findMinIndex finds the index of the smallest element in the stack.
-func findMinIndex(s *stack.Stack) int {
-	minIdx := 0
-	minVal := s.Items[0]
+func findMaxIndex(s *stack.Stack) int {
+	maxIdx := 0
+	maxVal := s.Items[0]
 	for i, val := range s.Items {
-		if val < minVal {
-			minVal = val
-			minIdx = i
+		if val > maxVal {
+			maxVal = val
+			maxIdx = i
 		}
 	}
-	return minIdx
+	return maxIdx
 }
 
 // moveToTop moves the smallest element to the top using the fewest rotations.
