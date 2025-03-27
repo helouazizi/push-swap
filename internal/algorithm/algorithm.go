@@ -29,7 +29,6 @@ func SortStack(a, b *stack.Stack) []string {
 	for len(b.Items) > 0 {
 		stack.Push(b, a) // Move elements from stack b back to stack a
 		operations = append(operations, "pa")
-
 		// Debugging: Print the current state of the stacks
 		// fmt.Println("After operation: pa")
 		// fmt.Println("Stack A:", a.Items)
@@ -54,9 +53,9 @@ func findMinIndex(s *stack.Stack) int {
 
 // moveToTop moves the smallest element to the top using the fewest rotations.
 func moveToTop(a, b *stack.Stack, index int, operations *[]string) {
-	if index > len(a.Items)/2 {
+	if index >= len(a.Items)/2 {
 		// Rotate to move the smallest element to the top
-		for i := index; i < len(a.Items)-1; i++ {
+		for i := index; i < len(a.Items); i++ {
 			if index > len(a.Items) {
 				fmt.Println(true)
 			}
@@ -66,8 +65,10 @@ func moveToTop(a, b *stack.Stack, index int, operations *[]string) {
 		fmt.Println(a.Items,"inside moove up ra")
 	} else {
 		// Reverse rotate to move the smallest element to the top
-		for i := len(a.Items) - index; i > 0; i-- {
+		fmt.Println("first")
+		for i := len(a.Items)-1 - index; i > 0; i-- {
 			a.ReverseRotate()
+			fmt.Println(a.Items,"rra")
 			*operations = append(*operations, "rra")
 		}
 		fmt.Println(a.Items,"inside moove up rra")
