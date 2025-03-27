@@ -56,20 +56,20 @@ func findMinIndex(s *stack.Stack) int {
 func moveToTop(a, b *stack.Stack, index int, operations *[]string) {
 	if index > len(a.Items)/2 {
 		// Rotate to move the smallest element to the top
-		for i := index; i < len(a.Items); i++ {
-			// if index == len(a.Items)-1 {
-			// 	break
-			// }
+		for i := index; i < len(a.Items)-1; i++ {
+			if index > len(a.Items) {
+				fmt.Println(true)
+			}
 			a.Rotate()
-			//index++
-			//fmt.Println(a.Items)
 			*operations = append(*operations, "ra")
 		}
+		fmt.Println(a.Items,"inside moove up ra")
 	} else {
 		// Reverse rotate to move the smallest element to the top
 		for i := len(a.Items) - index; i > 0; i-- {
 			a.ReverseRotate()
 			*operations = append(*operations, "rra")
 		}
+		fmt.Println(a.Items,"inside moove up rra")
 	}
 }
